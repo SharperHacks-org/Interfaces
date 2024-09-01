@@ -1,6 +1,6 @@
 ﻿// Copyright and trademark notices at the end of this file.
 
-namespace SharperHacks.CoreLibs.DelegateContainers;
+namespace SharperHacks.CoreLibs.Interfaces;
 
 /// <summary>
 /// Defines the Invoke() interface.
