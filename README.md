@@ -22,6 +22,9 @@ Defines the Invoke() interface.
 #### IResultAccumulator
 A result accumulator interface.
 
+#### IResultAccumlatorEx
+Extends IResultAccumulator with some Add*() methods.
+
 #### IResult&lt;T&gt;
 A generic result type interface.
 
