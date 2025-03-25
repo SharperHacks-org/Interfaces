@@ -15,17 +15,49 @@ public interface IResultAccumulator
     /// <summary>
     /// Get the count of the errors encountered.
     /// </summary>
-    public int ErrorCount { get; }
+    public int ErrorCount => Errors.Count();
 
     /// <summary>
     /// Get whether this result represents "success".
     /// </summary>
-    public bool Succeeded { get; }
+    public bool Succeeded => !Errors.Any();
 
     /// <summary>
     /// Accumulated error messages.
     /// </summary>
     public IEnumerable<string> Errors { get; }
+
+    /// <summary>
+    /// Add/accumulate the results from another accumulator.
+    /// </summary>
+    /// <param name="accumulator"></param>
+    /// <returns></returns>
+    public IResultAccumulator Add(IResultAccumulator accumulator);
+
+    /// <summary>
+    /// Add an error to this instance of the accumulator.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns>
+    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated error
+    /// messages, counts and <see cref="IResultAccumulator.Succeeded"/> set to false.
+    /// </returns>
+    public IResultAccumulator AddError(string message);
+
+    /// <summary>
+    /// Bump the result count.
+    /// </summary>
+    /// <returns></returns>
+    public IResultAccumulator AddSuccess();
+
+    /// <summary>
+    /// Bump the result count.
+    /// </summary>
+    /// <param name="accumulator"></param>
+    /// <returns>
+    /// The <paramref name="accumulator"/>.
+    /// </returns>
+    public static abstract IResultAccumulator operator ++(IResultAccumulator accumulator);
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
