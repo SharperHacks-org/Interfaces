@@ -50,14 +50,6 @@ public interface IResultAccumulator
     /// <returns></returns>
     public IResultAccumulator AddSuccess();
 
-    /// <summary>
-    /// Bump the result count.
-    /// </summary>
-    /// <param name="accumulator"></param>
-    /// <returns>
-    /// The <paramref name="accumulator"/>.
-    /// </returns>
-    public static abstract IResultAccumulator operator ++(IResultAccumulator accumulator);
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
