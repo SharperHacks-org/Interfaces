@@ -51,6 +51,11 @@ public interface IResultAccumulator
     public IResultAccumulator AddSuccess();
 
     /// <summary>
+    /// Clears existing errors.
+    /// </summary>
+    public IResultAccumulator Reset();
+
+    /// <summary>
     /// Bump the result count.
     /// </summary>
     /// <param name="accumulator"></param>
