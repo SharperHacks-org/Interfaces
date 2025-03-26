@@ -63,6 +63,7 @@ public interface IResultAccumulator
     /// The <paramref name="accumulator"/>.
     /// </returns>
     public static IResultAccumulator operator ++(IResultAccumulator accumulator) => accumulator.AddSuccess();
+
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
