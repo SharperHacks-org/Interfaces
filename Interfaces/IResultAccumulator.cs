@@ -39,10 +39,22 @@ public interface IResultAccumulator
     /// </summary>
     /// <param name="message"></param>
     /// <returns>
-    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated error
-    /// messages, counts and <see cref="IResultAccumulator.Succeeded"/> set to false.
+    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated 
+    /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
+    /// set to false.
     /// </returns>
     public IResultAccumulator AddError(string message);
+
+    /// <summary>
+    /// Add a warning message to this instance of the accumulator.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns>
+    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated 
+    /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
+    /// set according to whether their are any accumulated errors..
+    /// </returns>
+    public IResultAccumulator AddWarning(string message);
 
     /// <summary>
     /// Bump the result count.
