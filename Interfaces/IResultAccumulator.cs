@@ -28,6 +28,11 @@ public interface IResultAccumulator
     public IEnumerable<string> Errors { get; }
 
     /// <summary>
+    /// Accumulated warning messages.
+    /// </summary>
+    public IEnumerable<string> Warnings { get; }
+
+    /// <summary>
     /// Add/accumulate the results from another accumulator.
     /// </summary>
     /// <param name="accumulator"></param>
