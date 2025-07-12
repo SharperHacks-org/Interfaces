@@ -73,6 +73,12 @@ public interface IResultAccumulator
     public IResultAccumulator Reset();
 
     /// <summary>
+    /// Get all accumulated errors and warnings as a string.
+    /// </summary>
+    /// <returns>Accumulated errors and warings as a string.</returns>
+    public string ToString();
+
+    /// <summary>
     /// Bump the result count.
     /// </summary>
     /// <param name="accumulator"></param>
@@ -80,7 +86,6 @@ public interface IResultAccumulator
     /// The <paramref name="accumulator"/>.
     /// </returns>
     public static IResultAccumulator operator ++(IResultAccumulator accumulator) => accumulator.AddSuccess();
-
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
