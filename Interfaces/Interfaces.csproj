@@ -12,8 +12,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
-    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+      <Deterministic>true</Deterministic>
+      <PathMap>$(SolutionDir)={$(PathMapRoot)/$(SolutionName)}/</PathMap>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <PackageIcon>SHLLC-Logo.128.100.jpg</PackageIcon>
@@ -30,10 +33,10 @@
 
   <PropertyGroup>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
-    <Deterministic>true</Deterministic>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PathMap>$(MSBuildThisFileDirectory)={SHLLC/CoreLibs/$(MSBuildProjectName)}/</PathMap>
     <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
 
@@ -71,7 +74,6 @@
 
   <ItemGroup>
     <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="" />
-    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Update="LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
