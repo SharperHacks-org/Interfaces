@@ -13,8 +13,12 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Interfaces
 ### Targets
 - net8.0
 - net9.0
+- net10.0
 
 ### Interfaces
+
+#### IDeepCloneable
+Defines a deep clone interface.
 
 #### IInvoke
 Defines the Invoke() interface.

@@ -14,6 +14,7 @@
   <PropertyGroup>
       <Deterministic>true</Deterministic>
       <PathMap>$(SolutionDir)={$(PathMapRoot)/$(SolutionName)}/</PathMap>
+    <TargetFrameworks>$(TargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>
