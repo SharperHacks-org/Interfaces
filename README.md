@@ -29,6 +29,9 @@ A result accumulator interface.
 #### IResult&lt;T&gt;
 A generic result type interface.
 
+#### IResultStatus
+ generic result + status type interface.
+
 #### IRunable
 A Run() interface.
 
