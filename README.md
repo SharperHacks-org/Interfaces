@@ -21,7 +21,13 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Interfaces
 Defines a deep clone interface.
 
 #### IInvoke
-Defines the Invoke() interface.
+Defines the `void Invoke()` interface.
+
+#### IInvoke<TResult>
+Defines the Invoke() interface with a generic return type.
+
+#### IKvp<TKey>
+A KVP interface with strongly typed key and polymorphic value type (object).
 
 #### IResultAccumulator
 A result accumulator interface.
@@ -40,3 +46,15 @@ A generic settable state interface.
 
 #### IState&lt;T&gt;
 A generic state interface.
+
+#### IToJsonString
+Defines a ToJsonString() interface.
+
+#### IToJsonUtf8Bytes
+Defines a ToJsonUtf8Bytes() interface.
+
+#### IToJsonUtf8ByteSpan
+Defines a ToJsonUtf8ByteSpan() interface.
+
+#### IToJson
+Combines IToJsonString, IToJsonUtf8Bytes and IToJsonUtf8ByteSpan in one interface.

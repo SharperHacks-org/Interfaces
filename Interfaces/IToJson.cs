@@ -7,7 +7,7 @@ namespace SharperHacks.CoreLibs.Interfaces;
 public interface IToJsonString
 {
     /// <summary>
-    /// Write public instance state to JSON string.
+    /// Write instance state to JSON string.
     /// </summary>
     /// <param name="prettyPrint">
     /// Whether to use an expanded human readable format.
