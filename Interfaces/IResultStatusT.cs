@@ -10,14 +10,14 @@ namespace SharperHacks.CoreLibs.Interfaces;
 public interface IResultStatus<T>
 {
     /// <summary>
-    /// Get whether the result valid. False implies an error.
+    /// Get whether the result is valid. False implies an error.
     /// </summary>
-    public bool IsValidResult { get; }
+    bool IsValidResult { get; }
 
     /// <summary>
     /// Get the result.
     /// </summary>
-    public T? Result { get; }
+    T? Result { get; }
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
