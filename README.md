@@ -23,10 +23,10 @@ Defines a deep clone interface.
 #### IInvoke
 Defines the `void Invoke()` interface.
 
-#### IInvoke<TResult>
+#### IInvoke&lt;TResult&gt;
 Defines the Invoke() interface with a generic return type.
 
-#### IKvp<TKey>
+#### IKvp&lt;TKey&gt;
 A KVP interface with strongly typed key and polymorphic value type (object).
 
 #### IResultAccumulator
