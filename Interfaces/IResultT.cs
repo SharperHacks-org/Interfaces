@@ -1,4 +1,4 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
@@ -16,7 +16,7 @@ public interface IResult<T>
     /// <summary>
     /// Get the result.
     /// </summary>
-    public T Result { get; }
+    T Result { get; }
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

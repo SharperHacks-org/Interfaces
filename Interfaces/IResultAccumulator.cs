@@ -10,34 +10,34 @@ public interface IResultAccumulator
     /// <summary>
     /// Get the count of the accumulated results.
     /// </summary>
-    public int ResultCount { get; }
+    int ResultCount { get; }
 
     /// <summary>
     /// Get the count of the errors encountered.
     /// </summary>
-    public int ErrorCount => Errors.Count();
+    int ErrorCount => Errors.Count();
 
     /// <summary>
     /// Get whether this result represents "success".
     /// </summary>
-    public bool Succeeded => !Errors.Any();
+    bool Succeeded => !Errors.Any();
 
     /// <summary>
     /// Accumulated error messages.
     /// </summary>
-    public IEnumerable<string> Errors { get; }
+    IEnumerable<string> Errors { get; }
 
     /// <summary>
     /// Accumulated warning messages.
     /// </summary>
-    public IEnumerable<string> Warnings { get; }
+    IEnumerable<string> Warnings { get; }
 
     /// <summary>
     /// Add/accumulate the results from another accumulator.
     /// </summary>
     /// <param name="accumulator"></param>
     /// <returns></returns>
-    public IResultAccumulator Add(IResultAccumulator accumulator);
+    IResultAccumulator Add(IResultAccumulator accumulator);
 
     /// <summary>
     /// Add an error to this instance of the accumulator.
@@ -48,7 +48,7 @@ public interface IResultAccumulator
     /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
     /// set to false.
     /// </returns>
-    public IResultAccumulator AddError(string message);
+    IResultAccumulator AddError(string message);
 
     /// <summary>
     /// Add a warning message to this instance of the accumulator.
@@ -59,24 +59,24 @@ public interface IResultAccumulator
     /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
     /// set according to whether their are any accumulated errors..
     /// </returns>
-    public IResultAccumulator AddWarning(string message);
+    IResultAccumulator AddWarning(string message);
 
     /// <summary>
     /// Bump the result count.
     /// </summary>
     /// <returns></returns>
-    public IResultAccumulator AddSuccess();
+    IResultAccumulator AddSuccess();
 
     /// <summary>
     /// Clears existing errors.
     /// </summary>
-    public IResultAccumulator Reset();
+    IResultAccumulator Reset();
 
     /// <summary>
     /// Get all accumulated errors and warnings as a string.
     /// </summary>
     /// <returns>Accumulated errors and warings as a string.</returns>
-    public string ToString();
+    string ToString();
 
     /// <summary>
     /// Bump the result count.
@@ -85,7 +85,7 @@ public interface IResultAccumulator
     /// <returns>
     /// The <paramref name="accumulator"/>.
     /// </returns>
-    public static IResultAccumulator operator ++(IResultAccumulator accumulator) => accumulator.AddSuccess();
+    static IResultAccumulator operator ++(IResultAccumulator accumulator) => accumulator.AddSuccess();
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

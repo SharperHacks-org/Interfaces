@@ -1,4 +1,4 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
@@ -11,7 +11,7 @@ public interface IState<T>
     /// <summary>
     /// Get the current state.
     /// </summary>
-    public T State { get; }
+    T State { get; }
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

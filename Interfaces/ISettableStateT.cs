@@ -1,4 +1,4 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
@@ -19,7 +19,7 @@ public interface ISettableState<T>
     /// <remarks>
     /// Exceptions are up to the implementer.
     /// </remarks>
-    public bool SetState(T state);
+    bool SetState(T state);
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

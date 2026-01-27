@@ -1,4 +1,4 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
@@ -12,7 +12,7 @@ public interface IInvoke<TResult>
     /// Invoke any encapsulated function or process with a generic return type.
     /// </summary>
     /// <returns>TResult</returns>
-    public TResult Invoke();
+    TResult Invoke();
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

@@ -12,7 +12,7 @@ public interface IDeepCloneable<T>
     /// Perform a deep copy of the T instance.
     /// </summary>
     /// <returns>A deep copy.</returns>
-    public T DeepClone();
+    T DeepClone();
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

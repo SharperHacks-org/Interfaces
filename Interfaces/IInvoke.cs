@@ -1,4 +1,4 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
@@ -10,7 +10,7 @@ public interface IInvoke
     /// <summary>
     /// Invoke any encapsulated action, function, process.
     /// </summary>
-    public void Invoke();
+    void Invoke();
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
