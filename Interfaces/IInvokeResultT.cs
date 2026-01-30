@@ -2,16 +2,16 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// Defines the Invoke() interface with a generic return type.
-/// </summary>
-/// <typeparam name="TResult"></typeparam>
+// Defines the Invoke() interface with a generic return type.
+//
+// @TResult The result type return by @Invoke()
+//
 public interface IInvoke<TResult>
 {
-    /// <summary>
-    /// Invoke any encapsulated function or process with a generic return type.
-    /// </summary>
-    /// <returns>TResult</returns>
+    // Invoke any encapsulated function or process with a generic return type.
+    //
+    // Return: @TResult
+    //
     TResult Invoke();
 }
 

@@ -2,62 +2,45 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A KVP interface.
-/// Fixed key type.
-/// Polymorphic value type.
-/// </summary>
-/// <typeparam name="TKey">
-/// The type used as the key/label.
-/// </typeparam>
-/// <remarks>
-/// Intended for use in heterogenous containers.
-/// </remarks>
+// A KVP interface, w/fixed key type and polymorphic value type.
+//
+// @TKey The type used as the key/label.
+//
 public interface IKvp<TKey> where TKey : IComparable, IComparable<TKey>, IEquatable<TKey>
 {
-    /// <summary>
-    /// The key.
-    /// </summary>
-    /// <remarks>
-    /// Keys should be immutable. For perf reasons, an implementation is not required to implement
-    /// cloning on key retrieval. 
-    /// </remarks>
+    // The key.
+    //
+    // Keys SHOULD be immutable.
+    //
     TKey Key { get; }
 
-    /// <summary>
-    /// Whether the value is immutable.
-    /// </summary>
+    // Whether the value is immutable.
     bool IsImmutable { get; }
 
-    /// <summary>
-    /// The value object.
-    /// </summary>
+    // The value object.
     object? Value { get; }
 
-    /// <summary>
-    /// Return a deep clone of the underlying instance.
-    /// </summary>
-    /// <returns>IKvp{TKey}</returns>
+    // Return a deep clone of the underlying instance.
+    //
+    // Returns: IKvp<TKey>
+    //
     IKvp<TKey> Clone();
 
-    /// <summary>
-    /// Get the value as type T.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns>
-    /// The value as type T.
-    /// </returns>
-    /// <exceptions>
-    /// See https://learn.microsoft.com/en-us/dotnet/api/system.convert.changetype?view=net-9.0/>
-    /// </exceptions>
-    T? GetValue<T>() where T : IComparable, IComparable<T>, IEquatable<T>;
+    // Get the value as type TValue.
+    //
+    // Returns @TValue.
+    //
+    // Exceptions:
+    //  See https://learn.microsoft.com/en-us/dotnet/api/system.convert.changetype?view=net-9.0/>
+    //
+    TValue? GetValue<TValue>() where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>;
 
-    /// <summary>
-    /// Set Value.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="value"></param>
-    void SetValue<T>(T? value) where T : IComparable, IComparable<T>, IEquatable<T>;
+    // Set Value.
+    //
+    // Parameters:
+    //  @value The value to set.
+    //
+    void SetValue<TValue>(TValue? value) where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>;
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

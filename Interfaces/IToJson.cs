@@ -3,69 +3,71 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-///
+// A ToJsonString interface.
+//
 public interface IToJsonString
 {
-    /// <summary>
-    /// Write instance state to JSON string.
-    /// </summary>
-    /// <param name="prettyPrint">
-    /// Whether to use an expanded human readable format.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <param name="safe">
-    /// Whether to use a safe or unsafe serializer.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <returns>
-    /// A JSON string.
-    /// </returns>
+    // Write instance state to JSON string.
+    //
+    // Parameters:
+    //  @prettyPrint
+    //    Whether to use an expanded human readable format.
+    //    See System.Text.Json.SerializerOptions.
+    //
+    //  @safe
+    //   Whether to use a safe or unsafe serializer.
+    //   See System.Text.Json.SerializerOptions.
+    //
+    // Returns:
+    //  A JSON string.
+    //
     string ToJsonString(bool prettyPrint = false, bool safe = true);
 }
 
-///
+// A ToJsonUtf8Bytes interface.
+//
 public interface IToJsonUtf8Bytes
 {
-    /// <summary>
-    /// Write public instance state to JSON UTF8 encoded byte array.
-    /// </summary>
-    /// <param name="prettyPrint">
-    /// Whether to use an expanded human readable format.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <param name="safe">
-    /// Whether to use a safe or unsafe serializer.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <returns>
-    /// UTF8 encoded JSON byte array.
-    /// </returns>
+    // Write public instance state to JSON UTF8 encoded byte array.
+    //
+    // Parameters:
+    //  @prettyPrint
+    //   Whether to use an expanded human readable format.
+    //   See System.Text.Json.SerializerOptions.
+    //
+    //  @safe
+    //   Whether to use a safe or unsafe serializer.
+    //   See System.Text.Json.SerializerOptions.
+    //
+    // Returns:
+    //  UTF8 encoded JSON byte array.
+    //
     byte[] ToJsonUtf8Bytes(bool prettyPrint = false, bool safe = true);
 }
 
-///
+// A ToJsonUtf8ByteSpan interface.
+//
 public interface IToJsonUtf8ByteSpan
 {
-    /// <summary>
-    /// Write public instance state to JSON UTF8 encoded byte span.
-    /// </summary>
-    /// <param name="prettyPrint">
-    /// Whether to use an expanded human readable format.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <param name="safe">
-    /// Whether to use a safe or unsafe serializer.
-    /// See System.Text.Json.SerializerOptions.
-    /// </param>
-    /// <returns>
-    /// UTF8 encoded JSON byte span.
-    /// </returns>
+    // Write public instance state to JSON UTF8 encoded byte span.
+    //
+    // Parameters:
+    //  @prettyPrint
+    //   Whether to use an expanded human readable format.
+    //   See System.Text.Json.SerializerOptions.
+    //
+    //  @safe
+    //   Whether to use a safe or unsafe serializer.
+    //   See System.Text.Json.SerializerOptions.
+    //
+    // Returns:
+    //  UTF8 encoded JSON byte span.
+    //
     Span<byte> ToJsonUtf8ByteSpan(bool prettyPrint = false, bool safe = true);
 }
 
-/// <summary>
-/// Combines IToJsonString, IToJsonUtf8Bytes and IToJsonUtf8ByteSpan in one interface.
-/// </summary>
+// Combines IToJsonString, IToJsonUtf8Bytes and IToJsonUtf8ByteSpan in one interface.
+//
 public interface IToJson : 
     IToJsonString, 
     IToJsonUtf8Bytes, 

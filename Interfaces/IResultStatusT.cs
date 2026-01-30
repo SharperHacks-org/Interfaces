@@ -3,20 +3,17 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A generic result + status type interface.
-/// </summary>
-/// <typeparam name="T"></typeparam>
+// A generic result + status type interface.
+//
+// @T Is the type used to indicate status (ie; bool, int).
 public interface IResultStatus<T>
 {
-    /// <summary>
-    /// Get whether the result is valid. False implies an error.
-    /// </summary>
+    // Get whether the result is valid. False implies an error.
+    //
     bool IsValidResult { get; }
 
-    /// <summary>
-    /// Get the result.
-    /// </summary>
+    // Get the result.
+    //
     T? Result { get; }
 }
 

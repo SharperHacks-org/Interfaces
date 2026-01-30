@@ -2,89 +2,84 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A result accumulator interface.
-/// </summary>
+// A result accumulator interface.
+//
 public interface IResultAccumulator
 {
-    /// <summary>
-    /// Get the count of the accumulated results.
-    /// </summary>
+    // Get the count of the accumulated results.
     int ResultCount { get; }
 
-    /// <summary>
-    /// Get the count of the errors encountered.
-    /// </summary>
+    // Get the count of the errors encountered.
     int ErrorCount => Errors.Count();
 
-    /// <summary>
-    /// Get whether this result represents "success".
-    /// </summary>
+    // Get whether this result represents "success".
+    //
+    // Note that any failure recorded in this instance of @IResultAccumulator,
+    // MUST result in @IResultAccumulator.Succeeded returning false.
+    //
     bool Succeeded => !Errors.Any();
 
-    /// <summary>
-    /// Accumulated error messages.
-    /// </summary>
+    // Accumulated error messages.
     IEnumerable<string> Errors { get; }
 
-    /// <summary>
-    /// Accumulated warning messages.
-    /// </summary>
+    // Accumulated warning messages.
     IEnumerable<string> Warnings { get; }
 
-    /// <summary>
-    /// Add/accumulate the results from another accumulator.
-    /// </summary>
-    /// <param name="accumulator"></param>
-    /// <returns></returns>
+    // Add/accumulate the results from another accumulator.
+    //
+    // Parameters:
+    //  @accumulator
+    //
+    // Returns the updated IResultAccumulator instance.
+    //
     IResultAccumulator Add(IResultAccumulator accumulator);
 
-    /// <summary>
-    /// Add an error to this instance of the accumulator.
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns>
-    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated 
-    /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
-    /// set to false.
-    /// </returns>
+    // Add an error to this instance of the accumulator.
+    //
+    // Parameters:
+    //  @message
+    //
+    // Returns:
+    //  An instance of an @IResultAccumulator, with accumulated warning/error
+    //  messages, counts and @IResultAccumulator.Succeeded, set to false.
+    //
     IResultAccumulator AddError(string message);
 
-    /// <summary>
-    /// Add a warning message to this instance of the accumulator.
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns>
-    /// An instance of an <see cref="IResultAccumulator"/>, with accumulated 
-    /// warning/error messages, counts and <see cref="IResultAccumulator.Succeeded"/> 
-    /// set according to whether their are any accumulated errors..
-    /// </returns>
+    // Add a warning message to this instance of the accumulator.
+    //
+    // Parameters:
+    //  @message
+    //
+    // Returns:
+    //  An instance of an @IResultAccumulator, with accumulated warning/error
+    //  messages, counts and @IResultAccumulator.Succeeded set according to
+    //  whether their are any accumulated errors..
+    //
     IResultAccumulator AddWarning(string message);
 
-    /// <summary>
-    /// Bump the result count.
-    /// </summary>
-    /// <returns></returns>
+    // Bump the result count.
+    // 
+    // Returns: The current instance of IResultAccumulator, with .
+    //
     IResultAccumulator AddSuccess();
 
-    /// <summary>
-    /// Clears existing errors.
-    /// </summary>
+    // Clears existing errors.
+    //
     IResultAccumulator Reset();
 
-    /// <summary>
-    /// Get all accumulated errors and warnings as a string.
-    /// </summary>
-    /// <returns>Accumulated errors and warings as a string.</returns>
+    // Get all accumulated errors and warnings as a string.
+    //
+    // Returns: Accumulated errors and warings as a string.</returns>
+    //
     string ToString();
 
-    /// <summary>
-    /// Bump the result count.
-    /// </summary>
-    /// <param name="accumulator"></param>
-    /// <returns>
-    /// The <paramref name="accumulator"/>.
-    /// </returns>
+    // Bump the result count.
+    //
+    // Parameters:
+    //  @accumulator
+    //   The accumulator, from which to add all warnings, errors and result counts,
+    //   to this istance of @IResultAccumulator.
+    //
     static IResultAccumulator operator ++(IResultAccumulator accumulator) => accumulator.AddSuccess();
 }
 

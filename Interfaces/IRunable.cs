@@ -1,21 +1,18 @@
-﻿// Copyright and trademark notices at the end of this file.
+// Copyright and trademark notices at the end of this file.
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A Run() interface.
-/// </summary>
+// A Run() interface.
+//
 public interface IRunable
 {
-    /// <summary>
-    /// Perform operation(s).
-    /// </summary>
-    /// <returns>
-    ///  <see cref="IResultAccumulator"/>
-    /// </returns>
-    /// <remarks>
-    /// Exceptions are up to the implementer.
-    /// </remarks>
+    // Perform operation(s).
+    //
+    // Returns:
+    //  @IResultAccumulator
+    //
+    // Exceptions are up to the implementer.
+    //
     IResultAccumulator Run();
 }
 

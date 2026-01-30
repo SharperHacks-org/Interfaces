@@ -2,20 +2,18 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A generic result type interface.
-/// </summary>
-/// <remarks>
-/// Can be used as a return type, but is probably more useful for cases where
-/// a class method returns one thing or another, and also retains it's final result.
-/// Not intended for use as state, except in the case of final state.
-/// </remarks>
-/// <typeparam name="T"></typeparam>
+// A generic result type interface.
+//
+// Can be used as a return type, but is probably more useful for cases where
+// a class method returns one thing or another, and also retains it's final result.
+// Not intended for use as state, except in the case of final state.
+//
+// @T Is the result type (ie; bool, int).
+//
 public interface IResult<T>
 {
-    /// <summary>
-    /// Get the result.
-    /// </summary>
+    // Get the result.
+    //
     T Result { get; }
 }
 

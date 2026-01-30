@@ -2,23 +2,24 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A generic settable state interface.
-/// </summary>
-/// <typeparam name="T"></typeparam>
+// A generic set state interface.
+//
+//  @T The type representing the state.
+//
 public interface ISettableState<T>
 {
-    /// <summary>
-    /// Set the state.
-    /// </summary>
-    /// <param name="state"></param>
-    /// <returns>
-    ///  True if state set.
-    ///  False otherwise.
-    /// </returns>
-    /// <remarks>
-    /// Exceptions are up to the implementer.
-    /// </remarks>
+    // Set the state.
+    //
+    // Parameters:
+    //  @state The state to apply.
+    //
+    // Returns:
+    //  True if state set.
+    //  False otherwise.
+    //
+    // Notes:
+    //  1. Exceptions are up to the implementer.
+    //
     bool SetState(T state);
 }
 

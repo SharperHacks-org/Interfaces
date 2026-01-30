@@ -2,14 +2,11 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// Defines the Invoke() interface.
-/// </summary>
+// Defines the Invoke() interface.
+//
 public interface IInvoke
 {
-    /// <summary>
-    /// Invoke any encapsulated action, function, process.
-    /// </summary>
+    // Invoke any encapsulated action, function, process.
     void Invoke();
 }
 

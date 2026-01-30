@@ -23,16 +23,16 @@ Defines a deep clone interface.
 #### IInvoke
 Defines the `void Invoke()` interface.
 
-#### IInvoke&lt;TResult&gt;
+#### IInvoke`<TResult>`
 Defines the Invoke() interface with a generic return type.
 
-#### IKvp&lt;TKey&gt;
+#### IKvp`<TKey>`
 A KVP interface with strongly typed key and polymorphic value type (object).
 
 #### IResultAccumulator
 A result accumulator interface.
 
-#### IResult&lt;T&gt;
+#### IResult`<T>`
 A generic result type interface.
 
 #### IResultStatus
@@ -41,10 +41,10 @@ A generic result type interface.
 #### IRunable
 A Run() interface.
 
-#### ISettableState&lt;T&gt;
+#### ISettableState`<T>`
 A generic settable state interface.
 
-#### IState&lt;T&gt;
+#### IState`<T>`
 A generic state interface.
 
 #### IToJsonString

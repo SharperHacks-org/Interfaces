@@ -2,17 +2,14 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-// A simple interface for deeply cloneable objects.
+// A generic get state interface.
 //
-//  @T The type that is deep cloneable.
+//  @T The type representing the state.
 //
-public interface IDeepCloneable<T>
+public interface IGetableState<T>
 {
-    // Perform a deep copy of the @T instance.
-    //
-    // Returns: A deep copy of the current instance.
-    //
-    T DeepClone();
+    // Get the current state.
+    T GetState();
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)

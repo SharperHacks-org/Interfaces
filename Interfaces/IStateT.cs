@@ -2,16 +2,14 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-/// <summary>
-/// A generic state interface.
-/// </summary>
-/// <typeparam name="T"></typeparam>
+// A generic state interface.
+//
+//  @T The type representing the state.
+//
 public interface IState<T>
 {
-    /// <summary>
-    /// Get the current state.
-    /// </summary>
-    T State { get; }
+    // Get or set the current state.
+    T State { get; set; }
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
