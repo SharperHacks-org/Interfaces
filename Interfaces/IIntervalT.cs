@@ -25,7 +25,7 @@ public interface IInterval<T> where T : IComparable<T>
     //
     bool IsInclusiveLowerBound => LowerBoundaryType == IntervalBoundaryType.Inclusive;
 
-    // Get wether the lower boundary is exclusive.
+    // Get whether the lower boundary is exclusive.
     //
     bool IsExclusiveLowerBound => LowerBoundaryType == IntervalBoundaryType.Exclusive;
 
@@ -33,7 +33,7 @@ public interface IInterval<T> where T : IComparable<T>
     //
     T UpperBound { get; }
 
-    // Get wehther the upper boundary is inclusive or exlusive.
+    // Get whether the upper boundary is inclusive or exclusive.
     //
     IntervalBoundaryType UpperBoundaryType { get; }
 
@@ -47,7 +47,7 @@ public interface IInterval<T> where T : IComparable<T>
 
     // Get whether the defined interval is empty.
     //
-    // Default implementation not adquate for all types of T.
+    // Default implementation not adequate for all types of T.
     //
     bool IsEmpty => (LowerBound is null && UpperBound is null)
             || ((LowerBound is null || IsExclusiveLowerBound)

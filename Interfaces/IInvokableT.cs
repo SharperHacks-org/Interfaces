@@ -15,6 +15,9 @@ public interface IInvokable<TResult>
     TResult Invoke();
 }
 
+[Obsolete("Use IINvokable<TResult>")]
+public interface IInvoke<TResult> : IInvokable<TResult> { }
+
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");

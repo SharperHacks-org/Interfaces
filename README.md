@@ -17,7 +17,7 @@ Nuget: https://www.nuget.org/packages/SharperHacks.CoreLibs.Interfaces
 
 ### Interfaces
 
-#### IDeepCloneable
+#### `IDeepCloneable<T>`
 ```
 // A simple interface for deeply cloneable objects.
 //
@@ -33,7 +33,97 @@ public interface IDeepCloneable<T>
 }
 ```
 
-#### IInvokable`<TResult>`
+#### `IGetableState<T>`
+```
+// A generic get state interface.
+//
+//  @T The type representing the state.
+//
+public interface IGetableState<T>
+{
+    // Get the current state.
+    T GetState();
+}
+```
+
+#### `IInterval<T>`
+```
+// Represents a interval in terms of upper and lower bounds and whether
+// they are inclusive or exclusive.
+//
+// @T Any type that implements IComparable{T}.
+//
+// An interval in this context is not a fixed set of values. It is very 
+// important to capture the full semantics of interval specifications
+// and behaviors in implementations of this interface.
+//
+public interface IInterval<T> where T : IComparable<T>
+{
+    // Get the lower boundary of the interval.
+    //
+    T LowerBound { get; }
+
+    // Get whether lower boundary is inclusive or exclusive.
+    //
+    IntervalBoundaryType LowerBoundaryType { get; }
+
+    // Get whether the lower boundary is inclusive.
+    //
+    bool IsInclusiveLowerBound => LowerBoundaryType == IntervalBoundaryType.Inclusive;
+
+    // Get whether the lower boundary is exclusive.
+    //
+    bool IsExclusiveLowerBound => LowerBoundaryType == IntervalBoundaryType.Exclusive;
+
+    // Get the upper boundary of the interval.
+    //
+    T UpperBound { get; }
+
+    // Get whether the upper boundary is inclusive or exclusive.
+    //
+    IntervalBoundaryType UpperBoundaryType { get; }
+
+    // Get whether the upper boundary is inclusive.
+    //
+    bool IsInclusiveUpperBound => UpperBoundaryType == IntervalBoundaryType.Inclusive;
+
+    // Get whether the upper boundary is exclusive.
+    //
+    bool IsExclusiveUpperBound => UpperBoundaryType == IntervalBoundaryType.Exclusive;
+
+    // Get whether the defined interval is empty.
+    //
+    // Default implementation not adequate for all types of T.
+    //
+    bool IsEmpty => (LowerBound is null && UpperBound is null)
+            || ((LowerBound is null || IsExclusiveLowerBound)
+                && (UpperBound is null || IsExclusiveUpperBound))
+            || ((IsExclusiveLowerBound || IsExclusiveUpperBound)
+                && Equals(LowerBound, UpperBound));
+
+    // Determine whether value falls within specified interval.
+    //
+    // Parameters:
+    //  @value
+    //   The value to test against the interval.
+    //
+    // Returns: True if value is within the specified interval.
+    //
+    public bool Contains(T value)
+    {
+        // 
+        var lowerBoundComparison = value.CompareTo(LowerBound);
+        var upperBoundComparison = value.CompareTo(UpperBound);
+
+        var aboveLowerBound = IsInclusiveLowerBound ? lowerBoundComparison >= 0 : lowerBoundComparison >= 1;
+        var belowUpperBound = IsInclusiveUpperBound ? upperBoundComparison <= 0 : upperBoundComparison <= -1;
+
+        return aboveLowerBound && belowUpperBound;
+    }
+}
+```
+
+#### `IInvokable<TResult>`
 ```
 // Defines the Invoke() interface with a generic return type.
 //
@@ -49,18 +139,23 @@ public interface IInvokable<TResult>
 }
 ```
 
-#### IInvoke
+#### `IInvokable<TResult>`
 ```
-// Defines the Invoke() interface.
+// Defines the Invoke() interface with a generic return type.
 //
-public interface IInvoke
+// @TResult The result type return by @Invoke()
+//
+public interface IInvokable<TResult>
 {
-    // Invoke any encapsulated action, function, process.
-    void Invoke();
+    // Invoke any encapsulated function or process with a generic return type.
+    //
+    // Return: @TResult
+    //
+    TResult Invoke();
 }
 ```
 
-#### IKvp`<TKey>`
+#### `IKvp<TKey>`
 ```
 // A KVP interface, w/fixed key type and polymorphic value type.
 //
@@ -101,6 +196,69 @@ public interface IKvp<TKey> where TKey : IComparable, IComparable<TKey>, IEquata
     //  @value The value to set.
     //
     void SetValue<TValue>(TValue? value) where TValue : IComparable, IComparable<TValue>, IEquatable<TValue>;
+}
+```
+
+#### IntervalBoundaryType
+// Enumeration representing whether an interval boundary is inclusive/exclusive.
+//
+```
+public enum IntervalBoundaryType
+{
+    // Range boundary is inclusive.
+    //
+    Inclusive,
+
+    // Range boundary is exclusive.
+    //
+    Exclusive
+}
+```
+
+#### `IPoint<T>`
+```
+// A generic point interface.
+//
+// @TNumeric The numeric type used to specify locations.
+//
+public interface IPoint<TNumeric> where TNumeric : INumber<TNumeric>
+{
+    // Get the dimensionality associated with this point.
+    //
+    // Must be a non-zero positive value.
+    //
+    int Dimensions { get; }
+
+    // Get a list of points on each axis.
+    //
+    ImmutableList<TNumeric> Coordinates { get; }
+
+    // Get the component at the specified index.
+    //
+    // Parameters:
+    //  @index
+    //
+    // Returns The component value at that index.
+    //
+    TNumeric this[int index] => Coordinates[index];
+}
+```
+
+#### `IPolygon<T>`
+```
+// A generic polygon interface.
+//
+// @T The numeric type used to specify locations.
+//
+public interface IPolygon<T> where T : INumber<T>
+{
+    // Get the number of vertices, defining the polygon.
+    //
+    public int VertexCount { get; }
+
+    // Get the list of IPoint{T}'s that specify vertex positions.
+    //
+    public ImmutableList<IPoint<T>> Vertices { get; }
 }
 ```
 
@@ -147,20 +305,18 @@ public interface IProgNextArray<T> : IProgSeed
 
 #### `IProgNextInInterval<T>`
 Generic interface for PROG's that implement NextInInterval method.
-
 ```
 T NextInInterval(IInterval<T> interval);
 ```
+
 #### `IProgNextInRange<T>`
 Generic interface for PROG's that implement NextInRange method.
-
 ```
 T NextInRange(T min, T max);
 ```
 
 #### `IProgNextSpan<T>`
 Generic interface for PROG's that implement NextSpan methods.
-
 ```
  // Create a span of the specified size and fill it with random values.
  Span<T> NextSpan(int length);
@@ -171,7 +327,6 @@ Generic interface for PROG's that implement NextSpan methods.
 
 #### `IProgNextValue<T>`
 Generic interface for PROG's that implement NextValue method.
-
 ```
 T NextValue();
 ```
@@ -196,7 +351,6 @@ testing and diagnostic purposes.
 This interface provides an extreme level of abstraction over the above
 concepts, allowing the PRG to expose it's own, implementation specific,
 random and non-random initial state.
-
 ```
  // The seed used to initialize psuedo-random object generators (PROG's).
  object Seed { get; }
@@ -208,7 +362,6 @@ A generic interface to access internal state of PROG's.
 ```
 object State { get; }
 ```
-
 
 #### IResultAccumulator
 A result accumulator interface.
