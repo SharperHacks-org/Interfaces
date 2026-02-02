@@ -2,17 +2,24 @@
 
 namespace SharperHacks.CoreLibs.Interfaces;
 
-// Defines the Invoke() interface with a generic return type.
+// Generic interface for psuedo-random object generators (PROG's) that 
+// implement Span{T} NextSpan(...) methods.
 //
-// @TResult The result type return by @Invoke()
+// Typeparam: T return type of the NextSpan() method.
 //
-public interface IInvoke<TResult>
+public interface IProgNextSpan<T> : IProgSeed
 {
-    // Invoke any encapsulated function or process with a generic return type.
+    // Create a span of the specified size and fill it with random values.
     //
-    // Return: @TResult
+    // Returns: A span of random T values.
     //
-    TResult Invoke();
+    Span<T> NextSpan(int length);
+
+    // Fill the specified buffer with random values and return it.
+    //
+    // Returns [buffer] after filling it with random values.
+    //
+    Span<T> NextSpan(Span<T> buffer);
 }
 
 // Copyright Joseph W Donahue and Sharper Hacks LLC (US-WA)
