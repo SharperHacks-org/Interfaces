@@ -1,5 +1,7 @@
 ![SharperHacks logo](SHLLC-Logo.jpg)
-# Interfaces
+# THIS PROJECT HAS BEEN MOVED TO [codeberg.org](https://codeberg.org/SharperHacks-org/Interfaces).
+# THIS REPO WILL BE REMOVED.
+## Interfaces
 ## SharperHacks.CoreLibs.Interfaces
 
 A collection of useful interfaces, with zero implementation dependancies.
@@ -392,4 +394,5 @@ Defines a ToJsonUtf8ByteSpan() interface.
 
 #### IToJson
 Combines IToJsonString, IToJsonUtf8Bytes and IToJsonUtf8ByteSpan in one interface.
+
 
